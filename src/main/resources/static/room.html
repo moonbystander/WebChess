@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>中国象棋</title>
+    <script src="js/vue.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://unpkg.com/vue-router@3.5.2/dist/vue-router.min.js"></script>
+    <link rel="stylesheet" href="css/room/chess.css">
+
+</head>
+<body>
+<div id="app">
+    <el-container>
+        <el-main>
+            <div class="ui-container">
+                <div class="ui-user">
+                        <el-col :span="10">
+                            <div class="user">
+                            <div class="square-avatar">
+                                <div class="block"
+                                     :class="[{ 'is-Playing' : board.bstate == '0'  && !board.isPlay },{'no-Playing' : board.bstate == '0'  && board.isPlay}]"><el-avatar
+                                        shape="square" :size="50"
+                                                               :src="squareUrl"></el-avatar></div>
+                            </div>
+                            <div class="user-text">
+                                <div class="sub-title">{{ board.player[1].name }}</div>
+                                <div class="sub-title">{{ board.player[1].color==="b" ?"黑":"红" }}</div>
+                            </div>
+                            </div>
+                        </el-col>
+                </div>
+                <div class="ui-board">
+                    <div class="board-container">
+                        <div class="board">
+                            <canvas id="chess" width="325" height="403" @click="clickCanvas" >
+                            </canvas>
+                        </div>
+                        <div class="chat-container">
+                            <div class="chat">
+                                <div class="chat-t">
+                                    {{ chattext }}
+                                </div>
+                            </div>
+                            <div class="chat-text">
+                                <el-input class="chat-input"
+                                        placeholder="请输入内容"
+                                        v-model="input"
+                                        clearable>
+                                </el-input>
+                                <el-button type="primary" icon="el-icon-s-promotion" @click="sendMessage"></el-button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="ui-user">
+                        <el-col :span="10">
+                            <div class="user">
+                                <div class="square-avatar">
+                                    <div class="block"
+                                         :class="[{ 'is-Playing' : board.bstate == '0'  && board.isPlay },{ 'no-Playing' : board.bstate == '0'  && !board.isPlay }]"><el-avatar
+                                            shape="square" :size="50"
+                                                                   :src="squareUrl"></el-avatar></div>
+                                </div>
+                                <div class="user-text">
+                                    <div class="sub-title">{{ board.player[0].name }}</div>
+                                    <div class="sub-title">{{ board.player[0].color==="b" ?"黑":"红" }}</div>
+                                </div>
+                            </div>
+                        </el-col>
+                    <div class="mybuttons">
+                        <el-row >
+                            <el-button type="primary" round @click="Prepare">准备</el-button>
+                            <el-button
+                                    :class="{ 'is-disabled' : board.bstate !== '0' || !board.canDraw || !board.isPlay }"
+                                       type="primary"
+                            round
+                                       @click="Drawthegame">求和
+                            </el-button>
+                            <el-button :class="{ 'is-disabled' : board.bstate !== '0' }" type="primary" round
+                                       @click="Giveup">认输
+                            </el-button>
+                        </el-row>
+                    </div>
+                </div>
+            </div>
+        </el-main>
+        </el-footer>
+    </el-container>
+</div>
+</body>
+<!--<script src="js/websocket.js"></script>-->
+<script src="js/room/chess.js" ></script>
+
+</html>

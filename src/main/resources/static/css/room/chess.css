@@ -1,0 +1,117 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    display: flex; /* 使用 flexbox 布局 */
+    flex-direction: column; /* 垂直方向的列布局 */
+
+    background-image: url("../../img/png/bg.jpg");
+    background-size: cover;
+    background-position: center;
+}
+.el-container{
+    max-height: 100vh;
+    overflow: hidden;
+}
+.el-main{
+    flex-grow: 1;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.board-container{
+    display: flex;
+}
+
+.board{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    left: 10vw;
+    top: 20vh;
+    width: 300px;
+    height: 300px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: white;
+    opacity: 0.7;
+}
+
+.chat{
+    white-space: pre-wrap;
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 300px;
+    height: 200px;
+}
+
+.chat-text{
+    display: flex;
+}
+
+.chat-input{
+    flex: 1;
+}
+
+.myboards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* 圆圈颜色 */
+    border-top: 16px solid #3498db; /* 圆圈顶部颜色 */
+    border-radius: 50%; /* 圆圈形状 */
+    width: 120px; /* 圆圈宽度 */
+    height: 120px; /* 圆圈高度 */
+    animation: spin 2s linear infinite; /* 应用动画，持续时间2秒，线性变化，无限循环 */
+}
+
+.ui-container{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.ui-user{
+    flex: 1;
+}
+.ui-board{
+    flex: 5;
+}
+
+.user{
+    margin: 3vh 0 0 8vw;
+    display: flex;
+    flex-direction:row ;
+}
+
+.user-text{
+    margin: 0 0 0 3vw;
+}
+
+.is-Playing{
+    box-shadow: 0 0 10px 5px #11ff00;
+}
+
+.no-Playing{
+    box-shadow: 0 0 10px 5px #ff0000;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
